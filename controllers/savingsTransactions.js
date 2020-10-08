@@ -20,11 +20,41 @@ exports.deposit = asyncHandler(async (req, res, next) => {
   let transactions = await SavingsTransaction.create(req.body);
   let savingsAccount = await SavingsAccount.findById(req.body.account);
   // console.log(transactions);
-  // console.log(primaryAccount.accountBalance + req.body.amount);
+  // console.log(savingsAccount.accountBalance + req.body.amount);
 
   if (savingsAccount) {
     savingsAccount.accountBalance += req.body.amount;
     savingsAccount.save();
+  }
+
+  res.status(201).json({
+    success: true,
+    data: transactions
+  });
+});
+
+// @desc    Withdraw
+// @route   POST /api/v1/savingstransactions/withdraw
+// @access  Private
+exports.withdraw = asyncHandler(async (req, res, next) => {
+  // Add User and Account to req body
+  req.body.userRef = req.user.id;
+  req.body.account = req.user.savingsAccountId;
+
+  let transactions = await SavingsTransaction.create(req.body);
+  let savingsAccount = await SavingsAccount.findById(req.body.account);
+
+  // Account Balance must be >= withdrawal amount
+  if (savingsAccount.accountBalance >= req.body.amount) {
+    savingsAccount.accountBalance -= req.body.amount;
+    savingsAccount.save();
+  } else {
+    return next(
+      new ErrorResponse(
+        `Insufficient funds`,
+        404
+      )
+    );
   }
 
   res.status(201).json({
