@@ -10,6 +10,10 @@ dotenv.config({
 
 // Load models
 const User = require('./models/User');
+const PrimaryAccount = require('./models/PrimaryAccount');
+const SavingsAccount = require('./models/SavingsAccount');
+const PrimaryTransaction = require('./models/PrimaryTransaction');
+const SavingsTransaction = require('./models/SavingsTransaction');
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URI, {
@@ -25,10 +29,34 @@ const users = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
 );
 
+// Read JSON files
+const primaryaccounts = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/primaryaccounts.json`, 'utf-8')
+);
+
+// Read JSON files
+const savingsaccounts = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/savingsaccounts.json`, 'utf-8')
+);
+
+// Read JSON files
+const primarytransactions = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/primarytransactions.json`, 'utf-8')
+);
+
+// Read JSON files
+const savingstransactions = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/savingstransactions.json`, 'utf-8')
+);
+
 // Import into DB
 const importData = async () => {
   try {
     await User.create(users);
+    await PrimaryAccount.create(primaryaccounts);
+    await SavingsAccount.create(savingsaccounts);
+    await PrimaryTransaction.create(primarytransactions);
+    await SavingsTransaction.create(savingstransactions);
 
     console.log('Data Imported...'.green.inverse);
     process.exit();
@@ -41,6 +69,10 @@ const importData = async () => {
 const deleteData = async () => {
   try {
     await User.deleteMany();
+    await PrimaryAccount.deleteMany();
+    await SavingsAccount.deleteMany();
+    await PrimaryTransaction.deleteMany();
+    await SavingsTransaction.deleteMany();
 
     console.log('Data Destroyed...'.red.inverse);
     process.exit();
