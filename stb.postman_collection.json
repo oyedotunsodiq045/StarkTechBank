@@ -66,7 +66,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"oyedotunstestodiq045\",\r\n    \"firstName\": \"Sodiq\",\r\n    \"lastName\": \"Oyedotun\",\r\n    \"email\": \"oyedotunsodiq045@gmail.com\",\r\n    \"phone\": \"08175044840\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"userName\": \"oyedotunsodiq045\",\r\n    \"firstName\": \"Sodiq\",\r\n    \"lastName\": \"Oyedotun\",\r\n    \"email\": \"oyedotunsodiq045@gmail.com\",\r\n    \"phone\": \"08175044840\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {}
 							}
@@ -420,12 +420,222 @@
 		},
 		{
 			"name": "PrimaryTransaction",
-			"item": [],
+			"item": [
+				{
+					"name": "Primary Account Deposit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Primary Account Deposit\",\n    \"type\": \"Primary\",\n    \"amount\": 1000\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/primaryTransactions/deposit",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"primaryTransactions",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Primary Account Withdrawal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Primary Account Withdrawal\",\n    \"type\": \"Primary\",\n    \"amount\": 10\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/primaryTransactions/withdraw",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"primaryTransactions",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "SavingsTransaction",
-			"item": [],
+			"item": [
+				{
+					"name": "Savings Account Deposit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Savings Account Deposit\",\n    \"type\": \"Savings\",\n    \"amount\": 1000\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/savingsTransactions/deposit",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"savingsTransactions",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Savings Account Withdrawal",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Savings Account Withdrawal\",\n    \"type\": \"Savings\",\n    \"amount\": 477\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/savingsTransactions/withdraw",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"savingsTransactions",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
