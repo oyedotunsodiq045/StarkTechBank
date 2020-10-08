@@ -47,13 +47,15 @@ node seeder -d
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/updatedetails       | Update User Details           |
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/updatepassword      | Update Password               |
 |                                                                     |                               |
-| CurrentAccount                                                      |                               |
+| PrimaryAccount                                                      |                               |
 |                                                                     |                               |
 | SavingsAccount                                                      |                               |
 |                                                                     |                               |
 | PrimaryTransaction                                                  |                               |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/deposit    | Primary Account Deposit       |
 |                                                                     |                               |
 | SavingsTransaction                                                  |                               |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/deposit    | Savings Account Deposit       |
 |                                                                     |                               |
 | Appointment                                                         |                               |
 |                                                                     |                               |

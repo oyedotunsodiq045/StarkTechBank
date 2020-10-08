@@ -46,6 +46,16 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  primaryAccountId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'PrimaryAccount',
+    // required: true
+  },
+  savingsAccountId: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'SavingsAccount',
+    // required: true
+  },
   resetPasswordToken: String,
   resetPasswordExpire: String,
   createdAt: {

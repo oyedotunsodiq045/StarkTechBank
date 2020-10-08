@@ -2,31 +2,29 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PrimaryTransactionSchema = new Schema({
-  date: {
-    type: Date,
-    required: [true, 'Please add a date']
-  },
   description: {
     type: String,
-    required: [true, 'Please add a description'],
-    maxlength: [500, 'Description can not be more than 500 characters']
+    // required: [true, 'Please add a description'],
+    maxlength: [500, 'Description can not be more than 500 characters'],
+    default: 'Primary Account Deposit',
   },
   type: {
     type: String,
-    enum: ['primary', 'savings'],
+    enum: ['Primary', 'Savings'],
+    default: 'Primary',
   },
   status: {
     type: String,
-    required: [true, 'Please add a status'],
+    enum: ['Complete', 'Incomplete'],
   },
   amount: {
     type: Number,
     required: [true, 'Please add an amount'],
   },
-  availableBalance: {
-    type: Number,
-    required: [true, 'Please add available balance'],
-  },
+  // availableBalance: {
+  //   type: Number,
+  //   required: [true, 'Please add available balance'],
+  // },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -39,7 +37,11 @@ const PrimaryTransactionSchema = new Schema({
   account: {
     type: mongoose.Schema.ObjectId,
     ref: 'PrimaryAccount',
-    required: true
+    // required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now,
   },
   // name: {
   //   type: String,

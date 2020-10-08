@@ -17,6 +17,8 @@ const connectDB = require('./config/db');
 // Route files
 const auth = require('./routes/auth');
 const users = require('./routes/users');
+const primaryTransactions = require('./routes/primaryTransactions');
+const savingsTransactions = require('./routes/savingsTransactions');
 
 // Load env vars
 dotenv.config({
@@ -71,6 +73,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mount routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
+app.use('/api/v1/primaryTransactions', primaryTransactions);
+app.use('/api/v1/savingsTransactions', savingsTransactions);
 
 app.use(errorHandler);
 
@@ -80,7 +84,7 @@ const server = app.listen(
 	PORT,
 	console.log(
 		`Server running in ${process.env.NODE_ENV} mode on port ${PORT}!`.yellow
-			.bold
+		.bold
 	)
 );
 

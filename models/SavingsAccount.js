@@ -9,6 +9,7 @@ const SavingsAccountSchema = new Schema({
   },
   accountBalance: {
     type: Number,
+    required: [true, 'Please add an account balance'],
   },
   createdAt: {
     type: Date,
