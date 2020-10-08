@@ -17,7 +17,7 @@ exports.deposit = asyncHandler(async (req, res, next) => {
   req.body.userRef = req.user.id;
   req.body.account = req.user.savingsAccountId;
 
-  let transactions = await SavingsTransaction.create(req.body);
+  let transactions;
   let savingsAccount = await SavingsAccount.findById(req.body.account);
   // console.log(transactions);
   // console.log(savingsAccount.accountBalance + req.body.amount);
@@ -25,6 +25,10 @@ exports.deposit = asyncHandler(async (req, res, next) => {
   if (savingsAccount) {
     savingsAccount.accountBalance += req.body.amount;
     savingsAccount.save();
+
+    //
+    req.body.status = "Complete"
+    transactions = await SavingsTransaction.create(req.body);
   }
 
   res.status(201).json({
