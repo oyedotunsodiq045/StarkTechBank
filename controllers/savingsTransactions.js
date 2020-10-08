@@ -37,17 +37,22 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 // @route   POST /api/v1/savingstransactions/withdraw
 // @access  Private
 exports.withdraw = asyncHandler(async (req, res, next) => {
+
   // Add User and Account to req body
   req.body.userRef = req.user.id;
   req.body.account = req.user.savingsAccountId;
 
-  let transactions = await SavingsTransaction.create(req.body);
+  let transactions;
   let savingsAccount = await SavingsAccount.findById(req.body.account);
 
   // Account Balance must be >= withdrawal amount
   if (savingsAccount.accountBalance >= req.body.amount) {
     savingsAccount.accountBalance -= req.body.amount;
     savingsAccount.save();
+
+    //
+    req.body.status = "Complete"
+    transactions = await SavingsTransaction.create(req.body);
   } else {
     return next(
       new ErrorResponse(

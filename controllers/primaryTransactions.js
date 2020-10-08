@@ -42,13 +42,17 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
   req.body.userRef = req.user.id;
   req.body.account = req.user.primaryAccountId;
 
-  let transactions = await PrimaryTransaction.create(req.body);
+  let transactions;
   let primaryAccount = await PrimaryAccount.findById(req.body.account);
 
   // Account Balance must be >= withdrawal amount
   if (primaryAccount.accountBalance >= req.body.amount) {
     primaryAccount.accountBalance -= req.body.amount;
     primaryAccount.save();
+
+    //
+    req.body.status = "Complete"
+    transactions = await PrimaryTransaction.create(req.body);
   } else {
     return next(
       new ErrorResponse(

@@ -53,9 +53,11 @@ node seeder -d
 |                                                                     |                               |
 | PrimaryTransaction                                                  |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/deposit    | Primary Account Deposit       |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/withdraw   | Primary Account Withdrawal    |
 |                                                                     |                               |
 | SavingsTransaction                                                  |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/deposit    | Savings Account Deposit       |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/withdraw   | Savings Account Withdrawal    |
 |                                                                     |                               |
 | Appointment                                                         |                               |
 |                                                                     |                               |

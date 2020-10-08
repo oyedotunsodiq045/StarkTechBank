@@ -15,6 +15,7 @@ const SavingsTransactionSchema = new Schema({
   status: {
     type: String,
     enum: ['Complete', 'Incomplete'],
+    default: 'Incomplete',
   },
   amount: {
     type: Number,
