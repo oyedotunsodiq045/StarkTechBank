@@ -17,6 +17,9 @@
 		"url": "https://github.com/oyedotunsodiq045/StarkTechBank/issues"
 	},
 	"homepage": "https://starktechbank.glitch.me",
+	"documentation": {
+		"postman": "https://documenter.getpostman.com/view/3890015/TVRj4nkB"
+	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"colors": "^1.4.0",
