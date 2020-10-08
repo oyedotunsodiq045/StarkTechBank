@@ -39,9 +39,7 @@ node seeder -d
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/register                  | Register User                 |
 |                                                                     | Auto-Generate Current Account |
 |                                                                     | Auto-Generate Savings Account |
-|                                                                     | Sends Email                   |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/login                     | Login User                    |
-|                                                                     | Sends Email                   |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/forgotpassword            | Forgot Password               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/resetpassword/:resettoken | Reset Password                |
 | GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/me                  | Get Logged in User            |
@@ -62,6 +60,11 @@ node seeder -d
 | Recipient                                                           |                               |
 |                                                                     |                               |
 | Users                                                               |                               |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/users                          | Create User                   |
+| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users                    | Get all User                  |
+| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Get a User                    |
+| PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Update User                   |
+| DELETE &nbsp;url/api/v1/users/:id                                   | Delete User                   |
 |                                                                     |                               |
 | Advanced Filtering                                                  |                               |
 |                                                                     |                               |
