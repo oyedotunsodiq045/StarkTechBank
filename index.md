@@ -37,7 +37,7 @@ node seeder -d
 | ------------------------------------------------------------------- | ----------------------------- |
 | Authentication                                                      |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/register                  | Register User                 |
-|                                                                     | Auto-Generate Current Account |
+|                                                                     | Auto-Generate Primary Account |
 |                                                                     | Auto-Generate Savings Account |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/login                     | Login User                    |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/auth/forgotpassword            | Forgot Password               |
@@ -47,10 +47,6 @@ node seeder -d
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/updatedetails       | Update User Details           |
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/updatepassword      | Update Password               |
 |                                                                     |                               |
-| PrimaryAccount                                                      |                               |
-|                                                                     |                               |
-| SavingsAccount                                                      |                               |
-|                                                                     |                               |
 | PrimaryTransaction                                                  |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/deposit    | Primary Account Deposit       |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/withdraw   | Primary Account Withdrawal    |
@@ -59,9 +55,8 @@ node seeder -d
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/deposit    | Savings Account Deposit       |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/withdraw   | Savings Account Withdrawal    |
 |                                                                     |                               |
-| Appointment                                                         |                               |
-|                                                                     |                               |
-| Recipient                                                           |                               |
+| Transfers                                                           |                               |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/transfers                      | Transfer Between Account      |
 |                                                                     |                               |
 | Users                                                               |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/users                          | Create User                   |
@@ -69,6 +64,14 @@ node seeder -d
 | GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Get a User                    |
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Update User                   |
 | DELETE &nbsp;url/api/v1/users/:id                                   | Delete User                   |
+|                                                                     |                               |
+| PrimaryAccount                                                      |                               |
+|                                                                     |                               |
+| SavingsAccount                                                      |                               |
+|                                                                     |                               |
+| Appointment                                                         |                               |
+|                                                                     |                               |
+| Recipient                                                           |                               |
 |                                                                     |                               |
 | Advanced Filtering                                                  |                               |
 |                                                                     |                               |

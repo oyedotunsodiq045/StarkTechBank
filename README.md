@@ -9,13 +9,12 @@
 
   * [Forgot Password](#1-forgot-password)
   * [Get Logged in User via Token](#2-get-logged-in-user-via-token)
-  * [Hack a User](#3-hack-a-user)
-  * [Login User](#4-login-user)
-  * [Logout User](#5-logout-user)
-  * [Register User](#6-register-user)
-  * [Register User](#7-register-user)
-  * [Reset Password](#8-reset-password)
-  * [Update User Details](#9-update-user-details)
+  * [Login User](#3-login-user)
+  * [Logout User](#4-logout-user)
+  * [Register User](#5-register-user)
+  * [Reset Password](#6-reset-password)
+  * [Update  Password](#7-update--password)
+  * [Update User Details](#8-update-user-details)
 
 * [PrimaryTransaction](#primarytransaction)
 
@@ -26,6 +25,11 @@
 
   * [Savings Account Deposit](#1-savings-account-deposit)
   * [Savings Account Withdrawal](#2-savings-account-withdrawal)
+
+* [Transfers](#transfers)
+
+  * [Transfers Between Account - Primary to Savings](#1-transfers-between-account---primary-to-savings)
+  * [Transfers Between Account - Savings to Primary](#2-transfers-between-account---savings-to-primary)
 
 * [Users](#users)
 
@@ -70,7 +74,7 @@ URL: {{URL}}/api/v1/auth/forgotpassword
 
 ```js        
 {
-    "email": "adebabesemedeton@gmail.com"
+    "email": "oyedotunsodiq045@yahoo.com"
 }
 ```
 
@@ -97,41 +101,7 @@ URL: {{URL}}/api/v1/auth/me
 
 
 
-### 3. Hack a User
-
-
-Hack a user by guessing a correct password and set empty userName
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/auth/login
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json | JSON Type |
-
-
-
-***Body:***
-
-```js        
-{
-    "userName": {"$gt":""},
-    "password": "1234567"
-}
-```
-
-
-
-### 4. Login User
+### 3. Login User
 
 
 
@@ -163,7 +133,7 @@ URL: {{URL}}/api/v1/auth/login
 
 
 
-### 5. Logout User
+### 4. Logout User
 
 
 Clear user token
@@ -186,52 +156,10 @@ URL: {{URL}}/api/v1/auth/logout
 
 
 
-### 6. Register User
+### 5. Register User
 
 
-Register a User
-    * Creates Savings Account
-    * Creates Current Account
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/auth/register
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json | JSON Type |
-
-
-
-***Body:***
-
-```js        
-{
-    "userName": "ifeoye",
-    "firstName": "Ifeoluwa",
-    "lastName": "Adebabe",
-    "email": "adebabesemedeton@gmail.com",
-    "phone": "08189414781",
-    "password": "123456"
-}
-```
-
-
-
-### 7. Register User
-
-
-Register a User
-    * Creates Savings Account
-    * Creates Current Account
+Register a User, Auto creates Savings and Primary Account
 
 
 ***Endpoint:***
@@ -255,18 +183,18 @@ URL: {{URL}}/api/v1/auth/register
 
 ```js        
 {
-    "userName": "oyedotunsodiq045",
-    "firstName": "Sodiq",
-    "lastName": "Oyedotun",
-    "email": "oyedotunsodiq045@gmail.com",
-    "phone": "08175044840",
+    "userName": "abbey",
+    "firstName": "Abiodun",
+    "lastName": "Omogbolahan",
+    "email": "oyedotunsodiq045@yahoo.com",
+    "phone": "07058924457",
     "password": "123456"
 }
 ```
 
 
 
-### 8. Reset Password
+### 6. Reset Password
 
 
 Reset user password using token
@@ -277,7 +205,7 @@ Reset user password using token
 ```bash
 Method: PUT
 Type: RAW
-URL: {{URL}}/api/v1/auth/resetpassword/1b8754f8d518961685b3fa4a6236b91b5477cb56
+URL: {{URL}}/api/v1/auth/resetpassword/52f0e1e7291ff23cf390dd8a96cd3ecb0d5e60e9
 ```
 
 
@@ -299,7 +227,39 @@ URL: {{URL}}/api/v1/auth/resetpassword/1b8754f8d518961685b3fa4a6236b91b5477cb56
 
 
 
-### 9. Update User Details
+### 7. Update  Password
+
+
+
+***Endpoint:***
+
+```bash
+Method: PUT
+Type: RAW
+URL: {{URL}}/api/v1/auth/updatepassword
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "currentPassword": "1234567",
+    "newPassword": "123456"
+}
+```
+
+
+
+### 8. Update User Details
 
 
 
@@ -324,11 +284,11 @@ URL: {{URL}}/api/v1/auth/updatedetails
 
 ```js        
 {
-    "userName": "oyedotunsodiq045",
-    "firstName": "Sodiq",
+    "userName": "abbey",
+    "firstName": "Abiodun Omogbolahan",
     "lastName": "Oyedotun",
-    "email": "oyedotunsodiq045@gmail.com",
-    "phone": "08175044840"
+    "email": "oyedotunsodiq045@yahoo.com",
+    "phone": "07058924457"
 }
 ```
 
@@ -398,7 +358,7 @@ URL: {{URL}}/api/v1/primaryTransactions/withdraw
 {
     "description": "Primary Account Withdrawal",
     "type": "Primary",
-    "amount": 10
+    "amount": 285
 }
 ```
 
@@ -468,7 +428,81 @@ URL: {{URL}}/api/v1/savingsTransactions/withdraw
 {
     "description": "Savings Account Withdrawal",
     "type": "Savings",
-    "amount": 477
+    "amount": 1050
+}
+```
+
+
+
+## Transfers
+
+
+
+### 1. Transfers Between Account - Primary to Savings
+
+
+Make transaction between primary and savings accounts (vice versa)
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transfers
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "description": "Transfer to Savings Account",
+    "type": "Primary",
+    "amount": 100
+}
+```
+
+
+
+### 2. Transfers Between Account - Savings to Primary
+
+
+Make transaction between primary and savings accounts (vice versa)
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transfers
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "description": "Transfer to Primary Account",
+    "type": "Savings",
+    "amount": 390
 }
 ```
 
@@ -606,4 +640,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-08 17:31:17 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-09 18:02:36 by [docgen](https://github.com/thedevsaddam/docgen)
