@@ -21,10 +21,9 @@ const PrimaryTransactionSchema = new Schema({
     type: Number,
     required: [true, 'Please add an amount'],
   },
-  // availableBalance: {
-  //   type: Number,
-  //   required: [true, 'Please add available balance'],
-  // },
+  availableBalance: {
+    type: Number,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -34,7 +33,7 @@ const PrimaryTransactionSchema = new Schema({
     ref: 'User',
     required: true
   },
-  account: {
+  primaryAccountId: {
     type: mongoose.Schema.ObjectId,
     ref: 'PrimaryAccount',
     // required: true

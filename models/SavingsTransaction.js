@@ -21,10 +21,9 @@ const SavingsTransactionSchema = new Schema({
     type: Number,
     required: [true, 'Please add an amount'],
   },
-  // availableBalance: {
-  //   type: Number,
-  //   required: [true, 'Please add available balance'],
-  // },
+  availableBalance: {
+    type: Number,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -34,7 +33,7 @@ const SavingsTransactionSchema = new Schema({
     ref: 'User',
     required: true
   },
-  account: {
+  savingsAccountId: {
     type: mongoose.Schema.ObjectId,
     ref: 'SavingsAccount',
     required: true

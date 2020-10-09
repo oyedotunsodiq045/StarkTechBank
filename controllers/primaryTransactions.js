@@ -15,10 +15,10 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
   // Add User and Account to req body
   req.body.userRef = req.user.id;
-  req.body.account = req.user.primaryAccountId;
+  req.body.primaryAccountId = req.user.primaryAccountId;
 
   let transactions;
-  let primaryAccount = await PrimaryAccount.findById(req.body.account);
+  let primaryAccount = await PrimaryAccount.findById(req.body.primaryAccountId);
   // console.log(transactions);
   // console.log(primaryAccount.accountBalance + req.body.amount);
 
@@ -28,6 +28,7 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
     //
     req.body.status = "Complete"
+    req.body.availableBalance = primaryAccount.accountBalance;
     transactions = await PrimaryTransaction.create(req.body);
   }
 
@@ -44,10 +45,10 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
 
   // Add User and Account to req body
   req.body.userRef = req.user.id;
-  req.body.account = req.user.primaryAccountId;
+  req.body.primaryAccountId = req.user.primaryAccountId;
 
   let transactions;
-  let primaryAccount = await PrimaryAccount.findById(req.body.account);
+  let primaryAccount = await PrimaryAccount.findById(req.body.primaryAccountId);
 
   // Account Balance must be >= withdrawal amount
   if (primaryAccount.accountBalance >= req.body.amount) {
@@ -56,6 +57,7 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
 
     //
     req.body.status = "Complete"
+    req.body.availableBalance = primaryAccount.accountBalance;
     transactions = await PrimaryTransaction.create(req.body);
   } else {
     return next(

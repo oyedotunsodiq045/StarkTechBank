@@ -15,10 +15,10 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
   // Add User and Account to req body
   req.body.userRef = req.user.id;
-  req.body.account = req.user.savingsAccountId;
+  req.body.savingsAccountId = req.user.savingsAccountId;
 
   let transactions;
-  let savingsAccount = await SavingsAccount.findById(req.body.account);
+  let savingsAccount = await SavingsAccount.findById(req.body.savingsAccountId);
   // console.log(transactions);
   // console.log(savingsAccount.accountBalance + req.body.amount);
 
@@ -28,6 +28,7 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
     //
     req.body.status = "Complete"
+    req.body.availableBalance = savingsAccount.accountBalance;
     transactions = await SavingsTransaction.create(req.body);
   }
 
@@ -44,10 +45,10 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
 
   // Add User and Account to req body
   req.body.userRef = req.user.id;
-  req.body.account = req.user.savingsAccountId;
+  req.body.savingsAccountId = req.user.savingsAccountId;
 
   let transactions;
-  let savingsAccount = await SavingsAccount.findById(req.body.account);
+  let savingsAccount = await SavingsAccount.findById(req.body.savingsAccountId);
 
   // Account Balance must be >= withdrawal amount
   if (savingsAccount.accountBalance >= req.body.amount) {
@@ -56,6 +57,7 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
 
     //
     req.body.status = "Complete"
+    req.body.availableBalance = savingsAccount.accountBalance;
     transactions = await SavingsTransaction.create(req.body);
   } else {
     return next(
