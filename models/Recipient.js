@@ -35,7 +35,7 @@ const RecipientSchema = new Schema({
   userRef: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
-    required: true
+    // required: true
   },
 });
 

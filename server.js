@@ -21,6 +21,7 @@ const users = require('./routes/users');
 const primaryTransactions = require('./routes/primaryTransactions');
 const savingsTransactions = require('./routes/savingsTransactions');
 const transfers = require('./routes/transfers');
+const recipients = require('./routes/recipients');
 
 // Load env vars
 dotenv.config({
@@ -78,6 +79,7 @@ app.use('/api/v1/users', users);
 app.use('/api/v1/primaryTransactions', primaryTransactions);
 app.use('/api/v1/savingsTransactions', savingsTransactions);
 app.use('/api/v1/transfers', transfers);
+app.use('/api/v1/recipients', recipients);
 
 app.use(errorHandler);
 

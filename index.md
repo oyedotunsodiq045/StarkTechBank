@@ -60,18 +60,23 @@ node seeder -d
 |                                                                     |                               |
 | Users                                                               |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/users                          | Create User                   |
-| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users                    | Get all User                  |
+| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users                    | Get all Users                 |
 | GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Get a User                    |
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/users/:id                | Update User                   |
 | DELETE &nbsp;url/api/v1/users/:id                                   | Delete User                   |
+|                                                                     |                               |
+| Recipient                                                           |                               |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/recipients                     | Create Recipient              |
+| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/recipients               | Get all Recipients            |
+| GET &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/recipients/:id           | Get a Recipient               |
+| PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/recipients/:id           | Update Recipient              |
+| DELETE &nbsp;url/api/v1/recipients/:id                              | Delete Recipient              |
 |                                                                     |                               |
 | PrimaryAccount                                                      |                               |
 |                                                                     |                               |
 | SavingsAccount                                                      |                               |
 |                                                                     |                               |
 | Appointment                                                         |                               |
-|                                                                     |                               |
-| Recipient                                                           |                               |
 |                                                                     |                               |
 | Advanced Filtering                                                  |                               |
 |                                                                     |                               |

@@ -1,0 +1,17 @@
+[{
+  "_id": "5f819b69f167321f38772c05",
+  "name": "Ifeoluwa Adebabe",
+  "email": "adebabesemedeton@gmail.com",
+  "phone": "08189414781",
+  "accountNumber": 11223147,
+  "description": "Fiancee",
+  "userRef": "5f7ef584c3e0ad14e68f37a7"
+}, {
+  "_id": "5f81a2a91e188720064ca844",
+  "name": "Test Testing",
+  "email": "tester@gmail.com",
+  "phone": "08123456789",
+  "accountNumber": 11223145,
+  "description": "Friend",
+  "userRef": "5f7ef2e48157ff120490a28b"
+}]
