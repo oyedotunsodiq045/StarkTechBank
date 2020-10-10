@@ -471,7 +471,187 @@
 		},
 		{
 			"name": "Recipient",
-			"item": [],
+			"item": [
+				{
+					"name": "Create Recipient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "JSON Type",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ifeoluwa Adebabe\",\n    \"email\": \"adebabesemedeton@gmail.com\",\n    \"phone\": \"08189414781\",\n    \"accountNumber\": \"11223147\",\n    \"description\": \"Fiancee\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/recipients",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipients"
+							]
+						},
+						"description": "Recipient must be an account holder"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Recipients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/recipients",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipients"
+							]
+						},
+						"description": "Get all Recipients data. Admin only"
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Recipient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/v1/recipients/5f819b69f167321f38772c05",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipients",
+								"5f819b69f167321f38772c05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Recipient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"adebabesemedeton@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/recipients/5f819b69f167321f38772c05",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipients",
+								"5f819b69f167321f38772c05"
+							]
+						},
+						"description": "Update recipient data. Admin only"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Recipient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/api/v1/recipients/5f81a23d1e188720064ca841",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipients",
+								"5f81a23d1e188720064ca841"
+							]
+						},
+						"description": "Delete a Recipient. Admin only"
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{

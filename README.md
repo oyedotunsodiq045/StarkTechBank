@@ -21,6 +21,14 @@
   * [Primary Account Deposit](#1-primary-account-deposit)
   * [Primary Account Withdrawal](#2-primary-account-withdrawal)
 
+* [Recipient](#recipient)
+
+  * [Create Recipient](#1-create-recipient)
+  * [Delete a Recipient](#2-delete-a-recipient)
+  * [Get a Recipient](#3-get-a-recipient)
+  * [Get all Recipients](#4-get-all-recipients)
+  * [Update a Recipient](#5-update-a-recipient)
+
 * [SavingsTransaction](#savingstransaction)
 
   * [Savings Account Deposit](#1-savings-account-deposit)
@@ -364,6 +372,133 @@ URL: {{URL}}/api/v1/primaryTransactions/withdraw
 
 
 
+## Recipient
+
+
+
+### 1. Create Recipient
+
+
+Recipient must be an account holder
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/recipients
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json | JSON Type |
+
+
+
+***Body:***
+
+```js        
+{
+    "name": "Ifeoluwa Adebabe",
+    "email": "adebabesemedeton@gmail.com",
+    "phone": "08189414781",
+    "accountNumber": "11223147",
+    "description": "Fiancee"
+}
+```
+
+
+
+### 2. Delete a Recipient
+
+
+Delete a Recipient. Admin only
+
+
+***Endpoint:***
+
+```bash
+Method: DELETE
+Type: 
+URL: {{URL}}/api/v1/recipients/5f81a23d1e188720064ca841
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+### 3. Get a Recipient
+
+
+
+***Endpoint:***
+
+```bash
+Method: GET
+Type: 
+URL: {{URL}}/api/v1/recipients/5f819b69f167321f38772c05
+```
+
+
+
+### 4. Get all Recipients
+
+
+Get all Recipients data. Admin only
+
+
+***Endpoint:***
+
+```bash
+Method: GET
+Type: 
+URL: {{URL}}/api/v1/recipients
+```
+
+
+
+### 5. Update a Recipient
+
+
+Update recipient data. Admin only
+
+
+***Endpoint:***
+
+```bash
+Method: PUT
+Type: RAW
+URL: {{URL}}/api/v1/recipients/5f819b69f167321f38772c05
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "email": "adebabesemedeton@gmail.com"
+}
+```
+
+
+
 ## SavingsTransaction
 
 
@@ -640,4 +775,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-09 18:02:36 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-10 13:20:45 by [docgen](https://github.com/thedevsaddam/docgen)
