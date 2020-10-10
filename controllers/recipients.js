@@ -28,7 +28,9 @@ exports.getRecipients = asyncHandler(async (req, res, next) => {
 // @route   GET /api/v1/recipients/:id
 // @access  Private
 exports.getRecipient = asyncHandler(async (req, res, next) => {
-  const recipient = await Recipient.findById(req.params.id);
+  const recipient = await Recipient.findById(req.params.id).cache({
+    time: 10
+  });
 
   if (!recipient) {
     return next(
@@ -50,48 +52,150 @@ exports.getRecipient = asyncHandler(async (req, res, next) => {
 // @access  Public
 exports.createRecipient = asyncHandler(async (req, res, next) => {
 
-  // const recipient;
+  let userName = req.body.userName;
+  let accountNumber = req.body.accountNumber;
+  let type = req.body.type;
+  // let description = req.body.description;
+
   const user = await User.findOne({
-    email: req.body.email
+    userName
+  }).populate([{
+    path: 'primaryAccountId',
+    select: {
+      primaryAccountNumber: 1,
+      accountBalance: 1
+    },
+  }, {
+    path: 'savingsAccountId',
+    select: {
+      savingsAccountNumber: 1,
+      accountBalance: 1
+    },
+  }]);
+
+  // console.log(user);
+  // console.log(user.userName);
+  // console.log(user.primaryAccountId.primaryAccountNumber);
+  // console.log(user.savingsAccountId.savingsAccountNumber);
+
+  if (!user) {
+    return next(new ErrorResponse(`Recipient must be a StarkTechBank account holder`, 400));
+  }
+
+  // Add User to req body
+  req.body.userRef = user.id;
+
+  let uN = user.userName == userName;
+  let foundPan = user.primaryAccountId.primaryAccountNumber == accountNumber;
+  let foundSan = user.savingsAccountId.savingsAccountNumber == accountNumber;
+  // console.log(uN);
+
+  let validAccountNumber = foundPan || foundSan ? true : false;
+
+  if (!validAccountNumber) {
+    return next(new ErrorResponse(`Invalid account details`, 401));
+  }
+
+  const recipient = await Recipient.findOne({
+    accountNumber,
+    type
   });
+  // console.log(recipient);
 
-  // const primaryAccount = await PrimaryAccount.findOne({
-  //   primaryAccountNumber: req.body.accountNumber
-  // });
+  let notFound = !recipient && uN ? true : false;
+  // console.log(notFound);
 
-  // const savingsAccount = await SavingsAccount.findOne({
-  //   savingsAccountNumber: req.body.accountNumber
-  // });
+  if (notFound) {
+    // let recipient = new Recipient();
+    // recipient.userName = userName;
+    // recipient.accountNumber = accountNumber;
+    // recipient.type = type;
+    // recipient.description = description;
+    // recipient.userRef = user.id;
+    // recipient.save();
+    let newRecipient = await Recipient.create(req.body);
 
-  // console.log(`User object ==> ${user}`.red);
-  // console.log(`User id ==> ${user.id}`.green);
-  // console.log(`User _id ==> ${user._id}`.blue);
-  // console.log(primaryAccount);
-  // console.log(savingsAccount);
+    clearKey(Recipient.collection.collectionName);
 
-  // if (user || primaryAccount || savingsAccount) {
-  if (user) {
-    //
-    req.body.userRef = user.id;
-    // req.body.userRef = primaryAccount.userRef;
-    // req.body.userRef = savingsAccount.userRef;
-    recipient = await Recipient.create(req.body);
+    res.status(201).json({
+      success: true,
+      data: newRecipient,
+    });
 
   } else {
     return next(
       new ErrorResponse(
-        `Recipient is not an account holder`,
+        `Recipient already added to list`,
         404
       )
     );
   }
 
-  clearKey(Recipient.collection.collectionName);
+  // if (uN) {
+  //   let recipient = new Recipient();
+  //   recipient.userName = user.userName;
+  //   recipient.firstName = user.firstName;
+  //   recipient.lastName = user.lastName;
+  //   recipient.email = user.email;
+  //   recipient.phone = user.phone;
+  //   recipient.accountNumber = user.accountNumber;
+  //   recipient.type = type;
+  //   recipient.description = description;
 
-  res.status(201).json({
-    success: true,
-    data: recipient,
-  });
+  //   recipient.save();
+  // } else {
+  //   return next(
+  //     new ErrorResponse(
+  //       `Recipient must be a StarkTechBank account holder`,
+  //       404
+  //     )
+  //   );
+  // }
+
+
+
+  // const recipient;
+  // const user = await User.findOne({
+  //   email: req.body.email
+  // });
+
+  // // const primaryAccount = await PrimaryAccount.findOne({
+  // //   primaryAccountNumber: req.body.accountNumber
+  // // });
+
+  // // const savingsAccount = await SavingsAccount.findOne({
+  // //   savingsAccountNumber: req.body.accountNumber
+  // // });
+
+  // // console.log(`User object ==> ${user}`.red);
+  // // console.log(`User id ==> ${user.id}`.green);
+  // // console.log(`User _id ==> ${user._id}`.blue);
+  // // console.log(primaryAccount);
+  // // console.log(savingsAccount);
+
+  // // if (user || primaryAccount || savingsAccount) {
+  // if (user) {
+  //   //
+  //   req.body.userRef = user.id;
+  //   // req.body.userRef = primaryAccount.userRef;
+  //   // req.body.userRef = savingsAccount.userRef;
+  //   recipient = await Recipient.create(req.body);
+
+  // } else {
+  //   return next(
+  //     new ErrorResponse(
+  //       `Recipient is not an account holder`,
+  //       404
+  //     )
+  //   );
+  // }
+
+  // clearKey(Recipient.collection.collectionName);
+
+  // res.status(201).json({
+  //   success: true,
+  //   data: recipient,
+  // });
 });
 
 // @desc    Update Recipient
