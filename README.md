@@ -38,6 +38,7 @@
 
   * [Transfers Between Account - Primary to Savings](#1-transfers-between-account---primary-to-savings)
   * [Transfers Between Account - Savings to Primary](#2-transfers-between-account---savings-to-primary)
+  * [Transfers To Someone Else](#3-transfers-to-someone-else)
 
 * [Users](#users)
 
@@ -52,6 +53,7 @@
 
 
 ## Authentication
+Routes for user authentication including register, login, reset password, etc
 
 
 
@@ -303,6 +305,7 @@ URL: {{URL}}/api/v1/auth/updatedetails
 
 
 ## PrimaryTransaction
+Deposit and Withdraw from Primary Account and Primary Transactions table is updated for record keeping and statement request.
 
 
 
@@ -373,6 +376,7 @@ URL: {{URL}}/api/v1/primaryTransactions/withdraw
 
 
 ## Recipient
+Recipient CRUD functionality. Recipient are StarkTechBank account holders who you regularly transfer money to. User can create and delete, while Admin manage recipient (read, edit and update)
 
 
 
@@ -403,10 +407,9 @@ URL: {{URL}}/api/v1/recipients
 
 ```js        
 {
-    "name": "Ifeoluwa Adebabe",
-    "email": "adebabesemedeton@gmail.com",
-    "phone": "08189414781",
+    "userName": "ifeoye",
     "accountNumber": "11223147",
+    "type": "Primary",
     "description": "Fiancee"
 }
 ```
@@ -424,7 +427,7 @@ Delete a Recipient. Admin only
 ```bash
 Method: DELETE
 Type: 
-URL: {{URL}}/api/v1/recipients/5f81a23d1e188720064ca841
+URL: {{URL}}/api/v1/recipients/5f8246f1fcb2c42d0a279619
 ```
 
 
@@ -445,7 +448,7 @@ URL: {{URL}}/api/v1/recipients/5f81a23d1e188720064ca841
 ```bash
 Method: GET
 Type: 
-URL: {{URL}}/api/v1/recipients/5f819b69f167321f38772c05
+URL: {{URL}}/api/v1/recipients/5f824698fcb2c42d0a279616
 ```
 
 
@@ -477,7 +480,7 @@ Update recipient data. Admin only
 ```bash
 Method: PUT
 Type: RAW
-URL: {{URL}}/api/v1/recipients/5f819b69f167321f38772c05
+URL: {{URL}}/api/v1/recipients/5f824698fcb2c42d0a279616
 ```
 
 
@@ -493,13 +496,14 @@ URL: {{URL}}/api/v1/recipients/5f819b69f167321f38772c05
 
 ```js        
 {
-    "email": "adebabesemedeton@gmail.com"
+    "description": "only you"
 }
 ```
 
 
 
 ## SavingsTransaction
+Deposit and Withdraw from Savings Account and Savings Transactions table is updated for record keeping and statement request.
 
 
 
@@ -570,13 +574,14 @@ URL: {{URL}}/api/v1/savingsTransactions/withdraw
 
 
 ## Transfers
+Transfers between your account, (Primary to Savings) and vice versa, and to someone else.
 
 
 
 ### 1. Transfers Between Account - Primary to Savings
 
 
-Make transaction between primary and savings accounts (vice versa)
+Make transaction between primary and savings accounts. Deduct from primary, auto add to savings
 
 
 ***Endpoint:***
@@ -600,7 +605,6 @@ URL: {{URL}}/api/v1/transfers
 
 ```js        
 {
-    "description": "Transfer to Savings Account",
     "type": "Primary",
     "amount": 100
 }
@@ -611,7 +615,7 @@ URL: {{URL}}/api/v1/transfers
 ### 2. Transfers Between Account - Savings to Primary
 
 
-Make transaction between primary and savings accounts (vice versa)
+Make transaction between savings and primary accounts. Deduct from savings, auto add to primary
 
 
 ***Endpoint:***
@@ -635,7 +639,6 @@ URL: {{URL}}/api/v1/transfers
 
 ```js        
 {
-    "description": "Transfer to Primary Account",
     "type": "Savings",
     "amount": 390
 }
@@ -643,7 +646,44 @@ URL: {{URL}}/api/v1/transfers
 
 
 
+### 3. Transfers To Someone Else
+
+
+Transfer to another StarkTechBank account holder
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transfers/out
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "accountNumber": 11223147,
+    "type": "Primary",
+    "transferFrom": "Primary",
+    "amount": 999
+}
+```
+
+
+
 ## Users
+Users CRUD functionality. Admin only
 
 
 
@@ -775,4 +815,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-10 13:20:45 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-12 04:56:53 by [docgen](https://github.com/thedevsaddam/docgen)

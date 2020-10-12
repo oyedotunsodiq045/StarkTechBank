@@ -31,6 +31,14 @@ node seeder -d
 | URL &nbsp; &nbsp; &nbsp; &nbsp; https://starktechbank.glitch.me |
 |                                                                 |
 
+### Credentials (Admin purpose)
+
+| userName         | email                      | password |
+| ---------------- | -------------------------- | -------- |
+| oyedotunsodiq045 | oyedotunsodiq045@gmail.com | 123456   |
+| ifeoye           | adebabesemedeton@gmail.com | 123456   |
+| abbey            | oyedotunsodiq045@yahoo.com | 123456   |
+
 ### Testing
 
 | Routes                                                              | Description                   |
