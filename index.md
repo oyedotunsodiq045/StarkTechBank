@@ -57,6 +57,7 @@ node seeder -d
 |                                                                     |                               |
 | Transfers                                                           |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/transfers                      | Transfer Between Account      |
+| POST &nbsp; &nbsp; &nbsp; url/api/v1/transfers/out                  | Transfer To Someone else      |
 |                                                                     |                               |
 | Users                                                               |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/users                          | Create User                   |

@@ -17,7 +17,8 @@ const connectDB = require('./config/db');
 // Route files
 const auth = require('./routes/auth');
 const users = require('./routes/users');
-// merge primaryTransactions & savingsTransactions into one transaction file
+// merge primaryTransactions, savingsTransactions & transfers into one transaction file
+// const transactions = require('./routes/transactions');
 const primaryTransactions = require('./routes/primaryTransactions');
 const savingsTransactions = require('./routes/savingsTransactions');
 const transfers = require('./routes/transfers');
@@ -76,6 +77,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mount routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
+// app.use('/api/v1/transactions', transactions);
 app.use('/api/v1/primaryTransactions', primaryTransactions);
 app.use('/api/v1/savingsTransactions', savingsTransactions);
 app.use('/api/v1/transfers', transfers);

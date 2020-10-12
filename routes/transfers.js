@@ -1,6 +1,7 @@
 const express = require('express');
 const {
-  transfer
+  transfer,
+  transferOut
 } = require('../controllers/transfers');
 
 const router = express.Router();
@@ -9,6 +10,9 @@ const {
   protect
 } = require('../middleware/auth');
 
-router.post('/', protect, transfer);
+router.use(protect);
+
+router.post('/', transfer);
+router.post('/out', transferOut);
 
 module.exports = router;

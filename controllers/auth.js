@@ -5,8 +5,6 @@ const User = require('../models/User');
 const PrimaryAccount = require('../models/PrimaryAccount');
 const SavingsAccount = require('../models/SavingsAccount');
 const sendEmail = require('../utils/sendEmail');
-// const createPrimaryAccount = require('../utils/createPrimaryAccount');
-// const createSavingsAccount = require('../utils/createSavingsAccount');
 const {
 	clearKey
 } = require('../middleware/cache');
@@ -167,70 +165,6 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 	sendTokenResponse(user, 200, res);
 });
 
-// @desc    Get current logged in user
-// @route   GET /api/v1/auth/me
-// @access  Private
-exports.getMe = asyncHandler(async (req, res, next) => {
-	const user = await User.findById(req.user.id).populate([{
-		path: 'primaryAccountId',
-		select: {
-			primaryAccountNumber: 1,
-			accountBalance: 1
-		},
-	}, {
-		path: 'savingsAccountId',
-		select: {
-			savingsAccountNumber: 1,
-			accountBalance: 1
-		},
-	}]);
-
-	res.status(200).json({
-		success: true,
-		data: user,
-	});
-});
-
-// @desc    Update user details
-// @route   PUT /api/v1/auth/updatedetails
-// @access  Private
-exports.updateDetails = asyncHandler(async (req, res, next) => {
-	const fieldsToUpdate = {
-		userName: req.body.userName,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		phone: req.body.phone,
-	};
-
-	const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
-		new: true,
-		runValidators: true,
-	});
-
-	res.status(200).json({
-		success: true,
-		data: user,
-	});
-});
-
-// @desc    Update password
-// @route   PUT /api/v1/auth/updatepassword
-// @access  Private
-exports.updatePassword = asyncHandler(async (req, res, next) => {
-	const user = await User.findById(req.user.id).select('+password');
-
-	// Check current password
-	if (!(await user.matchPassword(req.body.currentPassword))) {
-		return next(new ErrorResponse(`Password is incorrect`, 401));
-	}
-
-	user.password = req.body.newPassword;
-	await user.save();
-
-	sendTokenResponse(user, 200, res);
-});
-
 // @desc    Login user
 // @route   POST /api/v1/auth/login
 // @access  Private
@@ -279,6 +213,72 @@ exports.logout = asyncHandler(async (req, res, next) => {
 		success: true,
 		data: {}
 	});
+});
+
+// @desc    Get current logged in user
+// @route   GET /api/v1/auth/me
+// @access  Private
+exports.getMe = asyncHandler(async (req, res, next) => {
+	const user = await User.findById(req.user.id).populate([{
+		path: 'primaryAccountId',
+		select: {
+			primaryAccountNumber: 1,
+			accountBalance: 1
+		},
+	}, {
+		path: 'savingsAccountId',
+		select: {
+			savingsAccountNumber: 1,
+			accountBalance: 1
+		},
+	}]).cache({
+		time: 10
+	});
+
+	res.status(200).json({
+		success: true,
+		data: user,
+	});
+});
+
+// @desc    Update user details
+// @route   PUT /api/v1/auth/updatedetails
+// @access  Private
+exports.updateDetails = asyncHandler(async (req, res, next) => {
+	const fieldsToUpdate = {
+		userName: req.body.userName,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email,
+		phone: req.body.phone,
+	};
+
+	const user = await User.findByIdAndUpdate(req.user.id, fieldsToUpdate, {
+		new: true,
+		runValidators: true,
+	});
+
+	res.status(200).json({
+		success: true,
+		data: user,
+	});
+});
+
+// @desc    Update password
+// @route   PUT /api/v1/auth/updatepassword
+// @access  Private
+exports.updatePassword = asyncHandler(async (req, res, next) => {
+	const user = await User.findById(req.user.id).select('+password');
+
+	// Check current password
+	if (!(await user.matchPassword(req.body.currentPassword))) {
+		return next(new ErrorResponse(`Password is incorrect`, 401));
+	}
+
+	user.password = req.body.newPassword;
+	await user.save();
+
+	sendTokenResponse(user, 200, res);
 });
 
 // Get token from model, create cookie and send response
