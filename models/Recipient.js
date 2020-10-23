@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const RecipientSchema = new Schema({
-  userName: {
+  username: {
     type: String,
     required: [true, 'Please add a username'],
   },
@@ -25,10 +25,12 @@ const RecipientSchema = new Schema({
     ref: 'User',
     // required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  }
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // }
+}, {
+  timestamps: true
 });
 
 // 1 recipient to 1 user

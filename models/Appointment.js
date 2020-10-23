@@ -19,15 +19,17 @@ const AppointmentSchema = new Schema({
     type: Boolean,
     default: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
   userRef: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
   },
+}, {
+  timestamps: true
 });
 
 // 1 user to 1 appointment

@@ -11,16 +11,17 @@ const SavingsAccountSchema = new Schema({
     type: Number,
     required: [true, 'Please add an account balance'],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
   userRef: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: true
   },
 }, {
+  timestamps: true,
   toJSON: {
     virtuals: true
   },

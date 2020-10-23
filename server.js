@@ -18,10 +18,12 @@ const connectDB = require('./config/db');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
 // merge primaryTransactions, savingsTransactions & transfers into one transaction file
-// const transactions = require('./routes/transactions');
+const transactions = require('./routes/transactions');
+// start comment out 
 const primaryTransactions = require('./routes/primaryTransactions');
 const savingsTransactions = require('./routes/savingsTransactions');
 const transfers = require('./routes/transfers');
+// end comment out 
 const recipients = require('./routes/recipients');
 
 // Load env vars
@@ -77,10 +79,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mount routers
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/users', users);
-// app.use('/api/v1/transactions', transactions);
+app.use('/api/v1/transactions', transactions);
+// start comment out 
 app.use('/api/v1/primaryTransactions', primaryTransactions);
 app.use('/api/v1/savingsTransactions', savingsTransactions);
 app.use('/api/v1/transfers', transfers);
+// end comment out 
 app.use('/api/v1/recipients', recipients);
 
 app.use(errorHandler);

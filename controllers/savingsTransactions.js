@@ -2,6 +2,10 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const SavingsTransaction = require('../models/SavingsTransaction');
 const SavingsAccount = require('../models/SavingsAccount');
+const {
+  sum,
+  difference,
+} = require('../utils/functions');
 
 // @desc    Deposit
 // @route   POST /api/v1/savingstransactions/deposit
@@ -24,6 +28,7 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
   if (savingsAccount) {
     savingsAccount.accountBalance += req.body.amount;
+    // savingsAccount.accountBalance = sum(savingsAccount.accountBalance, req.body.amount);
     savingsAccount.save();
 
     //
@@ -53,6 +58,7 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
   // Account Balance must be >= withdrawal amount
   if (savingsAccount.accountBalance >= req.body.amount) {
     savingsAccount.accountBalance -= req.body.amount;
+    // savingsAccount.accountBalance = difference(savingsAccount.accountBalance, req.body.amount);
     savingsAccount.save();
 
     //

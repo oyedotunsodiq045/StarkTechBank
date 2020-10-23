@@ -1,8 +1,8 @@
 [{
   "_id": "5f7ef2e48157ff120490a28b",
-  "userName": "test",
-  "firstName": "Test",
-  "lastName": "Testing",
+  "username": "test",
+  "firstname": "Test",
+  "lastname": "Testing",
   "email": "tester@gmail.com",
   "phone": "08123456789",
   "password": "123456",
@@ -10,9 +10,9 @@
   "savingsAccountId": "5f7ef2e58157ff120490a28d"
 }, {
   "_id": "5f7ef57ec3e0ad14e68f37a4",
-  "userName": "oyedotunsodiq045",
-  "firstName": "Sodiq",
-  "lastName": "Oyedotun",
+  "username": "oyedotunsodiq045",
+  "firstname": "Sodiq",
+  "lastname": "Oyedotun",
   "email": "oyedotunsodiq045@gmail.com",
   "phone": "08175044840",
   "password": "123456",
@@ -20,9 +20,9 @@
   "savingsAccountId": "5f7ef57ec3e0ad14e68f37a6"
 }, {
   "_id": "5f7ef584c3e0ad14e68f37a7",
-  "userName": "ifeoye",
-  "firstName": "Ifeoluwa",
-  "lastName": "Adebabe",
+  "username": "ifeoye",
+  "firstname": "Ifeoluwa",
+  "lastname": "Adebabe",
   "email": "adebabesemedeton@gmail.com",
   "phone": "08189414781",
   "password": "123456",

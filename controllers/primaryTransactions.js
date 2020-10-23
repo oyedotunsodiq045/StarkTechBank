@@ -2,6 +2,10 @@ const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
 const PrimaryTransaction = require('../models/PrimaryTransaction');
 const PrimaryAccount = require('../models/PrimaryAccount');
+const {
+  sum,
+  difference,
+} = require('../utils/functions');
 
 // @desc    Deposit
 // @route   POST /api/v1/primarytransactions/deposit
@@ -24,6 +28,7 @@ exports.deposit = asyncHandler(async (req, res, next) => {
 
   if (primaryAccount) {
     primaryAccount.accountBalance += req.body.amount;
+    // primaryAccount.accountBalance = sum(primaryAccount.accountBalance, req.body.amount);
     primaryAccount.save();
 
     //
@@ -53,6 +58,7 @@ exports.withdraw = asyncHandler(async (req, res, next) => {
   // Account Balance must be >= withdrawal amount
   if (primaryAccount.accountBalance >= req.body.amount) {
     primaryAccount.accountBalance -= req.body.amount;
+    // primaryAccount.accountBalance = difference(primaryAccount.accountBalance, req.body.amount);
     primaryAccount.save();
 
     //

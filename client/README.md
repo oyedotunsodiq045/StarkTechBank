@@ -1,4 +1,4 @@
-# starktechbank
+# client
 
 ## Project setup
 ```

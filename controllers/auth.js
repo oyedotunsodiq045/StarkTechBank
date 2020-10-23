@@ -14,9 +14,9 @@ const {
 // @access  Public
 exports.register = asyncHandler(async (req, res, next) => {
 	const {
-		userName,
-		firstName,
-		lastName,
+		username,
+		firstname,
+		lastname,
 		email,
 		phone,
 		password
@@ -24,9 +24,9 @@ exports.register = asyncHandler(async (req, res, next) => {
 
 	// Create user
 	const user = await User.create({
-		userName,
-		firstName,
-		lastName,
+		username,
+		firstname,
+		lastname,
 		email,
 		phone,
 		password,
@@ -170,20 +170,20 @@ exports.resetPassword = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.login = asyncHandler(async (req, res, next) => {
 	const {
-		userName,
+		username,
 		password
 	} = req.body;
 
-	// Validate userName & login
-	if (!userName || !password) {
+	// Validate username & login
+	if (!username || !password) {
 		return next(
-			new ErrorResponse(`Please provide a userName and password`, 400)
+			new ErrorResponse(`Please provide a username and password`, 400)
 		);
 	}
 
 	// Check for user
 	const user = await User.findOne({
-		userName,
+		username,
 	}).select('+password');
 
 	if (!user) {
@@ -227,10 +227,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 		},
 	}, {
 		path: 'savingsAccountId',
-		select: {
-			savingsAccountNumber: 1,
-			accountBalance: 1
-		},
+		select: 'savingsAccountNumber accountBalance',
 	}]).cache({
 		time: 10
 	});
@@ -300,5 +297,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 	res.status(statusCode).cookie('token', token, options).json({
 		success: true,
 		token,
+		data: user
 	});
 };

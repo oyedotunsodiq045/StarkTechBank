@@ -24,10 +24,10 @@ const PrimaryTransactionSchema = new Schema({
   availableBalance: {
     type: Number,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
   userRef: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
@@ -50,6 +50,8 @@ const PrimaryTransactionSchema = new Schema({
   //   type: String,
   //   required: [true, 'Please add a location']
   // },
+}, {
+  timestamps: true
 });
 
 // 1 Transaction to 1 PrimaryAccount

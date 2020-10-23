@@ -5,23 +5,23 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserSchema = new Schema({
-  userName: {
+  username: {
     type: String,
     required: [true, 'Please add a username'],
-    unique: true,
+    unique: [true, 'Username is already taken'],
   },
-  firstName: {
+  firstname: {
     type: String,
     required: [true, 'Please add a firstname'],
   },
-  lastName: {
+  lastname: {
     type: String,
     required: [true, 'Please add a lastname'],
   },
   email: {
     type: String,
     required: [true, 'Please add an email'],
-    unique: true,
+    unique: [true, 'Email is already registered'],
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       'Please add a valid email',
@@ -58,11 +58,12 @@ const UserSchema = new Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpire: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   default: Date.now,
+  // },
 }, {
+  timestamps: true,
   toJSON: {
     virtuals: true,
   },
