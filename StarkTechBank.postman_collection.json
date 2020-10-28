@@ -413,7 +413,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"ifeoye\",\n    \"accountNumber\": \"11223147\",\n    \"type\": \"Primary\",\n    \"description\": \"Fiancee\"\n}"
+							"raw": "{\n    \"username\": \"ifeoye\",\n    \"accountNumber\": \"11223147\",\n    \"type\": \"Primary\",\n    \"description\": \"Fiancee\"\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/api/v1/recipients",

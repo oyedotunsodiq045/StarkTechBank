@@ -324,7 +324,7 @@ URL: {{URL}}/api/v1/recipients
 
 ```js        
 {
-    "userName": "ifeoye",
+    "username": "ifeoye",
     "accountNumber": "11223147",
     "type": "Primary",
     "description": "Fiancee"
@@ -736,4 +736,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-28 20:36:03 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-28 20:47:49 by [docgen](https://github.com/thedevsaddam/docgen)
