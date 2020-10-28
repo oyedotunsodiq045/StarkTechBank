@@ -17,8 +17,8 @@ const SavingsTransaction = require('./models/SavingsTransaction');
 const Recipient = require('./models/Recipient');
 
 // Connect to DB
-// mongoose.connect(process.env.MONGO_URI, {
-mongoose.connect(process.env.LOCAL_MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
+// mongoose.connect(process.env.LOCAL_MONGO_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
