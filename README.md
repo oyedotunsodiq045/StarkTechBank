@@ -34,6 +34,15 @@
   * [Savings Account Deposit](#1-savings-account-deposit)
   * [Savings Account Withdrawal](#2-savings-account-withdrawal)
 
+* [Transactions](#transactions)
+
+  * [Deposit v3](#1-deposit-v3)
+  * [Primary Account Deposit](#2-primary-account-deposit)
+  * [Primary Account Withdrawal](#3-primary-account-withdrawal)
+  * [Savings Account Deposit](#4-savings-account-deposit)
+  * [Savings Account Withdrawal](#5-savings-account-withdrawal)
+  * [Withdraw v3](#6-withdraw-v3)
+
 * [Transfers](#transfers)
 
   * [Transfers Between Account - Primary to Savings](#1-transfers-between-account---primary-to-savings)
@@ -101,13 +110,6 @@ Method: GET
 Type: RAW
 URL: {{URL}}/api/v1/auth/me
 ```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
 
 
 
@@ -376,7 +378,7 @@ URL: {{URL}}/api/v1/primaryTransactions/withdraw
 
 
 ## Recipient
-Recipient CRUD functionality. Recipient are StarkTechBank account holders who you regularly transfer money to. User can create and delete, while Admin manage recipient (read, edit and update)
+Recipient CRUD functionality. Recipient are StarkTechBank account holders who you regularly transfer money to. Users can add, read and remove, while only Admin manage recipient (update)
 
 
 
@@ -419,7 +421,7 @@ URL: {{URL}}/api/v1/recipients
 ### 2. Delete a Recipient
 
 
-Delete a Recipient. Admin only
+Delete a recipient.
 
 
 ***Endpoint:***
@@ -442,6 +444,8 @@ URL: {{URL}}/api/v1/recipients/5f8246f1fcb2c42d0a279619
 ### 3. Get a Recipient
 
 
+Get a recipient from the database
+
 
 ***Endpoint:***
 
@@ -456,7 +460,7 @@ URL: {{URL}}/api/v1/recipients/5f824698fcb2c42d0a279616
 ### 4. Get all Recipients
 
 
-Get all Recipients data. Admin only
+Get all recipients data. Admin only
 
 
 ***Endpoint:***
@@ -568,6 +572,204 @@ URL: {{URL}}/api/v1/savingsTransactions/withdraw
     "description": "Savings Account Withdrawal",
     "type": "Savings",
     "amount": 1050
+}
+```
+
+
+
+## Transactions
+Users can make deposit, withdrawal, transfers in and out of their primary and savings account
+Primary and Savings Transactions table are updated respectively for record keeping and statement request.
+
+
+
+### 1. Deposit v3
+
+
+Deposit into Primary or Savings Account
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/deposit
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "type": "Savings",
+    "amount": 600
+}
+```
+
+
+
+### 2. Primary Account Deposit
+
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/primary/deposit
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "amount": 250
+}
+```
+
+
+
+### 3. Primary Account Withdrawal
+
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/primary/withdrawal
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "amount": 150
+}
+```
+
+
+
+### 4. Savings Account Deposit
+
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/savings/deposit
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "amount": 100
+}
+```
+
+
+
+### 5. Savings Account Withdrawal
+
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/savings/withdrawal
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "amount": 300
+}
+```
+
+
+
+### 6. Withdraw v3
+
+
+Withdraw from Primary or Savings Account
+
+
+***Endpoint:***
+
+```bash
+Method: POST
+Type: RAW
+URL: {{URL}}/api/v1/transactions/withdrawal
+```
+
+
+***Headers:***
+
+| Key | Value | Description |
+| --- | ------|-------------|
+| Content-Type | application/json |  |
+
+
+
+***Body:***
+
+```js        
+{
+    "type": "Primary",
+    "amount": 230
 }
 ```
 
@@ -815,4 +1017,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-12 04:56:53 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-28 14:55:40 by [docgen](https://github.com/thedevsaddam/docgen)
