@@ -5,7 +5,9 @@ const {
   saveAcctDeposit,
   saveAcctWithdrawal,
   transfer,
-  transferOut
+  transferOut,
+  deposit,
+  withdraw
 } = require('../controllers/transactions');
 
 const router = express.Router();
@@ -39,5 +41,13 @@ router.post('/transfer', transfer);
 // Transfer - To Someone else
 // /api/v1/transactions/transfer/out
 router.post('/transfer/out', transferOut);
+
+// Deposit v3
+// /api/v1/transactions/deposit
+router.post('/deposit', deposit);
+
+// Withdraw v3
+// /api/v1/transactions/withdrawal
+router.post('/withdrawal', withdraw);
 
 module.exports = router;

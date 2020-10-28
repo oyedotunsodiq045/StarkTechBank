@@ -38,3 +38,19 @@ exports.quotient = (x, y) => x / y;
 // export function quotient(x, y) {
 //   return x / y
 // }
+
+// export const sum = async (x, y) => {
+//   return x + y
+// }
+
+// export const difference = async (x, y) => {
+//   return x + y
+// }
+
+// export const product = async (x, y) => {
+//   return x * y
+// }
+
+// export const quotient = async (x, y) => {
+//   return x / y
+// }

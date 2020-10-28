@@ -28,12 +28,26 @@ exports.pryAcctDeposit = asyncHandler(async (req, res, next) => {
   // console.log(transactions);
   // console.log(primaryAccount.accountBalance + req.body.amount);
 
+  // 
+  // let typeIsEmpty = req.body.type == "" ? true : false;
+  // let notANumber = req.body.amount == NaN ? true : false;
+  // if (typeIsEmpty && notANumber) {
+  //   return next(
+  //     new ErrorResponse(
+  //       `Please fill in all parameters`,
+  //       404
+  //     )
+  //   );
+  // }
+
   if (primaryAccount) {
     primaryAccount.accountBalance += req.body.amount;
     // primaryAccount.accountBalance = sum(primaryAccount.accountBalance, req.body.amount);
     primaryAccount.save();
 
     //
+    // req.body.description = "Primary Account Deposit"
+    req.body.description = `Deposit of N${req.body.amount} into Primary account`;
     req.body.status = "Complete"
     req.body.availableBalance = primaryAccount.accountBalance;
     transactions = await PrimaryTransaction.create(req.body);
@@ -64,6 +78,8 @@ exports.pryAcctWithdrawal = asyncHandler(async (req, res, next) => {
     primaryAccount.save();
 
     //
+    // req.body.description = "Primary Account Withdrawal"
+    req.body.description = `Withdrawal of N${req.body.amount} from Primary account`;
     req.body.status = "Complete"
     req.body.availableBalance = primaryAccount.accountBalance;
     transactions = await PrimaryTransaction.create(req.body);
@@ -107,6 +123,8 @@ exports.saveAcctDeposit = asyncHandler(async (req, res, next) => {
     savingsAccount.save();
 
     //
+    // req.body.description = "Savings Account Deposit"
+    req.body.description = `Deposit of N${req.body.amount} into Savings account`;
     req.body.status = "Complete"
     req.body.availableBalance = savingsAccount.accountBalance;
     transactions = await SavingsTransaction.create(req.body);
@@ -137,6 +155,8 @@ exports.saveAcctWithdrawal = asyncHandler(async (req, res, next) => {
     savingsAccount.save();
 
     //
+    // req.body.description = "Savings Account Withdrawal"
+    req.body.description = `Withdrawal of N${req.body.amount} from Savings account`;
     req.body.status = "Complete"
     req.body.availableBalance = savingsAccount.accountBalance;
     transactions = await SavingsTransaction.create(req.body);
@@ -154,9 +174,6 @@ exports.saveAcctWithdrawal = asyncHandler(async (req, res, next) => {
     data: transactions
   });
 });
-
-// Transfer - Between Accounts (Primary -> Savings and Vice Versa)
-// /api/v1/transactions/transfer
 
 // @desc    Transfer - Between Accounts (Primary -> Savings and Vice Versa)
 // @route   POST /api/v1/transactions/transfer
@@ -196,7 +213,7 @@ exports.transfer = asyncHandler(async (req, res, next) => {
       savingsAccount.save();
       // Update transaction status
       req.body.status = "Complete"
-      req.body.description = `Transferred ${amount} from ${transferFrom} account to Savings account`;
+      req.body.description = `Transferred N${amount} from ${transferFrom} account to Savings account`;
       req.body.availableBalance = primaryUpdatedBalance;
       transactions = await PrimaryTransaction.create(req.body);
       // sendMail()
@@ -307,7 +324,7 @@ exports.transferOut = asyncHandler(async (req, res, next) => {
         pryAccountExist.save();
         // Update transaction status
         req.body.status = "Complete"
-        req.body.description = `Transferred ${amount} from ${transferFrom} account to ${pryAccountExist.userRef.firstName} ${pryAccountExist.userRef.lastName} ${recipientAccountType} account`;
+        req.body.description = `Transferred N${amount} from ${transferFrom} account to ${pryAccountExist.userRef.firstName} ${pryAccountExist.userRef.lastName} ${recipientAccountType} account`;
         req.body.availableBalance = primaryUpdatedBalance;
         transactions = await PrimaryTransaction.create(req.body);
       } else {
@@ -332,7 +349,7 @@ exports.transferOut = asyncHandler(async (req, res, next) => {
         pryAccountExist.save();
         // Update transaction status
         req.body.status = "Complete"
-        req.body.description = `Transferred ${amount} from ${transferFrom} account to ${pryAccountExist.userRef.firstName} ${pryAccountExist.userRef.lastName} ${recipientAccountType} account`;
+        req.body.description = `Transferred N${amount} from ${transferFrom} account to ${pryAccountExist.userRef.firstName} ${pryAccountExist.userRef.lastName} ${recipientAccountType} account`;
         req.body.availableBalance = savingsUpdatedBalance;
         transactions = await SavingsTransaction.create(req.body);
       } else {
@@ -367,7 +384,7 @@ exports.transferOut = asyncHandler(async (req, res, next) => {
         savAccountExist.save();
         // Update transaction status
         req.body.status = "Complete"
-        req.body.description = `Transferred ${amount} from ${transferFrom} account to ${savAccountExist.userRef.firstName} ${savAccountExist.userRef.lastName} ${recipientAccountType} account`;
+        req.body.description = `Transferred N${amount} from ${transferFrom} account to ${savAccountExist.userRef.firstName} ${savAccountExist.userRef.lastName} ${recipientAccountType} account`;
         req.body.availableBalance = primaryUpdatedBalance;
         transactions = await PrimaryTransaction.create(req.body);
       } else {
@@ -392,7 +409,7 @@ exports.transferOut = asyncHandler(async (req, res, next) => {
         savAccountExist.save();
         // Update transaction status
         req.body.status = "Complete"
-        req.body.description = `Transferred ${amount} from ${transferFrom} account to ${savAccountExist.userRef.firstName} ${savAccountExist.userRef.lastName} ${recipientAccountType} account`;
+        req.body.description = `Transferred N${amount} from ${transferFrom} account to ${savAccountExist.userRef.firstName} ${savAccountExist.userRef.lastName} ${recipientAccountType} account`;
         req.body.availableBalance = savingsUpdatedBalance;
         transactions = await SavingsTransaction.create(req.body);
       } else {
@@ -425,3 +442,185 @@ exports.transferOut = asyncHandler(async (req, res, next) => {
     data: transactions
   });
 });
+
+// @desc    Deposit v3
+// @route   POST /api/v1/transactions/deposit
+// @access  Private
+exports.deposit = asyncHandler(async (req, res, next) => {
+
+  // let description = req.body.description;
+  let type = req.body.type;
+  // let status = req.body.status;
+  // let amount = req.body.amount;
+
+  // Add User and Account to req body
+  req.body.userRef = req.user.id;
+  req.body.primaryAccountId = req.user.primaryAccountId;
+  req.body.savingsAccountId = req.user.savingsAccountId;
+
+  let transactions;
+  let primaryAccount = await PrimaryAccount.findById(req.body.primaryAccountId);
+  let savingsAccount = await SavingsAccount.findById(req.body.savingsAccountId);
+
+  if (!req.body.amount) {
+    return next(
+      new ErrorResponse(
+        `Amount is not inputed`,
+        404
+      )
+    );
+  }
+
+  if (type === 'Primary') {
+    // Deposit into Primary Account
+    if (primaryAccount) {
+      primaryAccount.accountBalance += req.body.amount;
+      // primaryAccount.accountBalance = sum(primaryAccount.accountBalance, req.body.amount);
+      primaryAccount.save();
+      
+      req.body.description = `Deposit of N${req.body.amount} into Primary account`;
+      req.body.status = "Complete"
+      req.body.availableBalance = primaryAccount.accountBalance;
+      transactions = await PrimaryTransaction.create(req.body);
+    } else {
+      return next(
+        new ErrorResponse(
+          `${type} Account number not found`,
+          404
+        )
+      );
+    }
+
+    res.status(201).json({
+      success: true,
+      data: transactions
+    });
+
+  } else if (type === 'Savings') {
+    // Deposit into Savings Account
+    if (savingsAccount) {
+      savingsAccount.accountBalance += req.body.amount;
+      // savingsAccount.accountBalance = sum(savingsAccount.accountBalance, req.body.amount);
+      savingsAccount.save();
+      
+      req.body.description = `Deposit of N${req.body.amount} into Savings account`;
+      req.body.status = "Complete"
+      req.body.availableBalance = savingsAccount.accountBalance;
+      transactions = await SavingsTransaction.create(req.body);
+    } else {
+      return next(
+        new ErrorResponse(
+          `${type} Account number not found`,
+          404
+        )
+      );
+    }
+
+    res.status(201).json({
+      success: true,
+      data: transactions
+    });
+
+  } else {
+    return next(
+      new ErrorResponse(
+        `Please fill in all parameters`,
+        404
+      )
+    );
+  }
+})
+
+// @desc    Withdraw v3
+// @route   POST /api/v1/transactions/withdrawal
+// @access  Private
+exports.withdraw = asyncHandler(async (req, res, next) => {
+  
+  let type = req.body.type;
+
+  // Add User and Account to req body
+  req.body.userRef = req.user.id;
+  req.body.primaryAccountId = req.user.primaryAccountId;
+  req.body.savingsAccountId = req.user.savingsAccountId;
+
+  let transactions;
+  let primaryAccount = await PrimaryAccount.findById(req.body.primaryAccountId);
+  let savingsAccount = await SavingsAccount.findById(req.body.savingsAccountId);
+
+  if (!req.body.amount) {
+    return next(
+      new ErrorResponse(
+        `Amount is not inputed`,
+        404
+      )
+    );
+  }
+
+  if (type === 'Primary') {
+    // Withdraw from Primary Account
+    // Account Balance must be >= withdrawal amount
+    if (primaryAccount.accountBalance >= req.body.amount) {
+      primaryAccount.accountBalance -= req.body.amount;
+      // primaryAccount.accountBalance = difference(primaryAccount.accountBalance, req.body.amount);
+      primaryAccount.save();
+
+      //
+      // req.body.description = "Primary Account Withdrawal"
+      req.body.description = `Withdrawal of N${req.body.amount} from Primary account`;
+      req.body.status = "Complete"
+      req.body.availableBalance = primaryAccount.accountBalance;
+      transactions = await PrimaryTransaction.create(req.body);
+    } else {
+      return next(
+        new ErrorResponse(
+          `Insufficient funds`,
+          404
+        )
+      );
+    }
+
+    res.status(201).json({
+      success: true,
+      data: transactions
+    });
+
+  } else if (type === 'Savings') {
+    // Withdraw from Savings Account
+    // Account Balance must be >= withdrawal amount
+    if (savingsAccount.accountBalance >= req.body.amount) {
+      savingsAccount.accountBalance -= req.body.amount;
+      // savingsAccount.accountBalance = difference(savingsAccount.accountBalance, req.body.amount);
+      savingsAccount.save();
+  
+      //
+      // req.body.description = "Savings Account Withdrawal"
+      req.body.description = `Withdrawal of N${req.body.amount} from Savings account`;
+      req.body.status = "Complete"
+      req.body.availableBalance = savingsAccount.accountBalance;
+      transactions = await SavingsTransaction.create(req.body);
+    } else {
+      return next(
+        new ErrorResponse(
+          `Insufficient funds`,
+          404
+        )
+      );
+    }
+
+    res.status(201).json({
+      success: true,
+      data: transactions
+    });
+
+  } else {
+    return next(
+      new ErrorResponse(
+        `Please fill in all parameters`,
+        404
+      )
+    );
+  }
+
+
+
+})
