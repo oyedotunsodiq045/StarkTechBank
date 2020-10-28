@@ -16,11 +16,6 @@
   * [Update  Password](#7-update--password)
   * [Update User Details](#8-update-user-details)
 
-* [PrimaryTransaction](#primarytransaction)
-
-  * [Primary Account Deposit](#1-primary-account-deposit)
-  * [Primary Account Withdrawal](#2-primary-account-withdrawal)
-
 * [Recipient](#recipient)
 
   * [Create Recipient](#1-create-recipient)
@@ -29,19 +24,10 @@
   * [Get all Recipients](#4-get-all-recipients)
   * [Update a Recipient](#5-update-a-recipient)
 
-* [SavingsTransaction](#savingstransaction)
-
-  * [Savings Account Deposit](#1-savings-account-deposit)
-  * [Savings Account Withdrawal](#2-savings-account-withdrawal)
-
 * [Transactions](#transactions)
 
   * [Deposit v3](#1-deposit-v3)
-  * [Primary Account Deposit](#2-primary-account-deposit)
-  * [Primary Account Withdrawal](#3-primary-account-withdrawal)
-  * [Savings Account Deposit](#4-savings-account-deposit)
-  * [Savings Account Withdrawal](#5-savings-account-withdrawal)
-  * [Withdraw v3](#6-withdraw-v3)
+  * [Withdraw v3](#2-withdraw-v3)
 
 * [Transfers](#transfers)
 
@@ -138,7 +124,7 @@ URL: {{URL}}/api/v1/auth/login
 
 ```js        
 {
-    "userName": "oyedotunsodiq045",
+    "username": "oyedotunsodiq045",
     "password": "123456"
 }
 ```
@@ -195,10 +181,10 @@ URL: {{URL}}/api/v1/auth/register
 
 ```js        
 {
-    "userName": "abbey",
-    "firstName": "Abiodun",
-    "lastName": "Omogbolahan",
-    "email": "oyedotunsodiq045@yahoo.com",
+    "username": "sweetman",
+    "firstname": "Major",
+    "lastname": "Stark",
+    "email": "oyedotun@gmail.com",
     "phone": "07058924457",
     "password": "123456"
 }
@@ -296,82 +282,11 @@ URL: {{URL}}/api/v1/auth/updatedetails
 
 ```js        
 {
-    "userName": "abbey",
-    "firstName": "Abiodun Omogbolahan",
-    "lastName": "Oyedotun",
+    "username": "abbey",
+    "firstname": "Abiodun Omogbolahan",
+    "lastname": "Oyedotun",
     "email": "oyedotunsodiq045@yahoo.com",
     "phone": "07058924457"
-}
-```
-
-
-
-## PrimaryTransaction
-Deposit and Withdraw from Primary Account and Primary Transactions table is updated for record keeping and statement request.
-
-
-
-### 1. Primary Account Deposit
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/primaryTransactions/deposit
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "description": "Primary Account Deposit",
-    "type": "Primary",
-    "amount": 1000
-}
-```
-
-
-
-### 2. Primary Account Withdrawal
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/primaryTransactions/withdraw
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "description": "Primary Account Withdrawal",
-    "type": "Primary",
-    "amount": 285
 }
 ```
 
@@ -506,80 +421,8 @@ URL: {{URL}}/api/v1/recipients/5f824698fcb2c42d0a279616
 
 
 
-## SavingsTransaction
-Deposit and Withdraw from Savings Account and Savings Transactions table is updated for record keeping and statement request.
-
-
-
-### 1. Savings Account Deposit
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/savingsTransactions/deposit
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "description": "Savings Account Deposit",
-    "type": "Savings",
-    "amount": 1000
-}
-```
-
-
-
-### 2. Savings Account Withdrawal
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/savingsTransactions/withdraw
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "description": "Savings Account Withdrawal",
-    "type": "Savings",
-    "amount": 1050
-}
-```
-
-
-
 ## Transactions
-Users can make deposit, withdrawal, transfers in and out of their primary and savings account
-Primary and Savings Transactions table are updated respectively for record keeping and statement request.
+Users can make deposit, withdrawal, transfers in and out of their primary and savings account. Primary and Savings Transactions table are updated respectively for record keeping and statement request.
 
 
 
@@ -617,131 +460,7 @@ URL: {{URL}}/api/v1/transactions/deposit
 
 
 
-### 2. Primary Account Deposit
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/transactions/primary/deposit
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 250
-}
-```
-
-
-
-### 3. Primary Account Withdrawal
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/transactions/primary/withdrawal
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 150
-}
-```
-
-
-
-### 4. Savings Account Deposit
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/transactions/savings/deposit
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 100
-}
-```
-
-
-
-### 5. Savings Account Withdrawal
-
-
-
-***Endpoint:***
-
-```bash
-Method: POST
-Type: RAW
-URL: {{URL}}/api/v1/transactions/savings/withdrawal
-```
-
-
-***Headers:***
-
-| Key | Value | Description |
-| --- | ------|-------------|
-| Content-Type | application/json |  |
-
-
-
-***Body:***
-
-```js        
-{
-    "amount": 300
-}
-```
-
-
-
-### 6. Withdraw v3
+### 2. Withdraw v3
 
 
 Withdraw from Primary or Savings Account
@@ -916,9 +635,9 @@ URL: {{URL}}/api/v1/users
 
 ```js        
 {
-    "userName": "test",
-    "firstName": "Test",
-    "lastName": "Microphone",
+    "username": "test",
+    "firstname": "Test",
+    "lastname": "Microphone",
     "email": "test@gmail.com",
     "phone": "08123456789",
     "password": "123456"
@@ -1017,4 +736,4 @@ URL: {{URL}}/api/v1/users/5f7df53b25f6723e4802cf2f
 
 ---
 [Back to top](#starktechbank)
-> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-28 14:55:40 by [docgen](https://github.com/thedevsaddam/docgen)
+> Made with &#9829; by [thedevsaddam](https://github.com/thedevsaddam) | Generated at: 2020-10-28 20:36:03 by [docgen](https://github.com/thedevsaddam/docgen)

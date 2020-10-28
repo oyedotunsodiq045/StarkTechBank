@@ -39,7 +39,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"abbey\",\n    \"firstName\": \"Abiodun\",\n    \"lastName\": \"Omogbolahan\",\n    \"email\": \"oyedotunsodiq045@yahoo.com\",\n    \"phone\": \"07058924457\",\n    \"password\": \"123456\"\n}"
+							"raw": "{\n    \"username\": \"sweetman\",\n    \"firstname\": \"Major\",\n    \"lastname\": \"Stark\",\n    \"email\": \"oyedotun@gmail.com\",\n    \"phone\": \"07058924457\",\n    \"password\": \"123456\"\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/api/v1/auth/register",
@@ -86,7 +86,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userName\": \"oyedotunsodiq045\",\r\n    \"password\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"username\": \"oyedotunsodiq045\",\r\n    \"password\": \"123456\"\r\n}",
 							"options": {
 								"raw": {}
 							}
@@ -303,7 +303,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"abbey\",\n    \"firstName\": \"Abiodun Omogbolahan\",\n    \"lastName\": \"Oyedotun\",\n    \"email\": \"oyedotunsodiq045@yahoo.com\",\n    \"phone\": \"07058924457\"\n}"
+							"raw": "{\n    \"username\": \"abbey\",\n    \"firstname\": \"Abiodun Omogbolahan\",\n    \"lastname\": \"Oyedotun\",\n    \"email\": \"oyedotunsodiq045@yahoo.com\",\n    \"phone\": \"07058924457\"\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/api/v1/auth/updatedetails",
@@ -377,139 +377,6 @@
 					"listen": "test",
 					"script": {
 						"id": "0c9e59f0-7dac-466f-b25d-ae83f876aafa",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "PrimaryTransaction",
-			"item": [
-				{
-					"name": "Primary Account Deposit",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"Primary Account Deposit\",\n    \"type\": \"Primary\",\n    \"amount\": 1000\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/primaryTransactions/deposit",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"primaryTransactions",
-								"deposit"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Primary Account Withdrawal",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"Primary Account Withdrawal\",\n    \"type\": \"Primary\",\n    \"amount\": 285\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/primaryTransactions/withdraw",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"primaryTransactions",
-								"withdraw"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"description": "Deposit and Withdraw from Primary Account and Primary Transactions table is updated for record keeping and statement request.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "04171a19-b9a0-4c11-bec1-35bd96fc86a8",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "7d271a5d-d3f5-4035-8be1-d0e8ec010b7b",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -729,353 +596,8 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "SavingsTransaction",
-			"item": [
-				{
-					"name": "Savings Account Deposit",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"Savings Account Deposit\",\n    \"type\": \"Savings\",\n    \"amount\": 1000\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/savingsTransactions/deposit",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"savingsTransactions",
-								"deposit"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Savings Account Withdrawal",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"description\": \"Savings Account Withdrawal\",\n    \"type\": \"Savings\",\n    \"amount\": 1050\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/savingsTransactions/withdraw",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"savingsTransactions",
-								"withdraw"
-							]
-						}
-					},
-					"response": []
-				}
-			],
-			"description": "Deposit and Withdraw from Savings Account and Savings Transactions table is updated for record keeping and statement request.",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "23d30a43-5ba6-4b3f-949c-6b6a4d570e38",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "b8637a7b-cf65-4bfe-87d0-3cc5d5471a8f",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
 			"name": "Transactions",
 			"item": [
-				{
-					"name": "Savings Account Deposit",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 100\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/transactions/savings/deposit",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"transactions",
-								"savings",
-								"deposit"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Savings Account Withdrawal",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 300\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/transactions/savings/withdrawal",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"transactions",
-								"savings",
-								"withdrawal"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Primary Account Deposit",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 250\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/transactions/primary/deposit",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"transactions",
-								"primary",
-								"deposit"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Primary Account Withdrawal",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3dd3f398-0c48-414b-9776-44e14051682d",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"amount\": 150\n}"
-						},
-						"url": {
-							"raw": "{{URL}}/api/v1/transactions/primary/withdrawal",
-							"host": [
-								"{{URL}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"transactions",
-								"primary",
-								"withdrawal"
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Deposit v3",
 					"event": [
@@ -1183,7 +705,7 @@
 					"response": []
 				}
 			],
-			"description": "Users can make deposit, withdrawal, transfers in and out of their primary and savings account\nPrimary and Savings Transactions table are updated respectively for record keeping and statement request.",
+			"description": "Users can make deposit, withdrawal, transfers in and out of their primary and savings account. Primary and Savings Transactions table are updated respectively for record keeping and statement request.",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -1421,7 +943,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userName\": \"test\",\n    \"firstName\": \"Test\",\n    \"lastName\": \"Microphone\",\n    \"email\": \"test@gmail.com\",\n    \"phone\": \"08123456789\",\n    \"password\": \"123456\"\n}"
+							"raw": "{\n    \"username\": \"test\",\n    \"firstname\": \"Test\",\n    \"lastname\": \"Microphone\",\n    \"email\": \"test@gmail.com\",\n    \"phone\": \"08123456789\",\n    \"password\": \"123456\"\n}"
 						},
 						"url": {
 							"raw": "{{URL}}/api/v1/users",

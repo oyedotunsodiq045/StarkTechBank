@@ -33,11 +33,12 @@ node seeder -d
 
 ### Credentials (Admin purpose)
 
-| userName         | email                      | password |
+| username         | email                      | password |
 | ---------------- | -------------------------- | -------- |
 | oyedotunsodiq045 | oyedotunsodiq045@gmail.com | 123456   |
 | ifeoye           | adebabesemedeton@gmail.com | 123456   |
-| abbey            | oyedotunsodiq045@yahoo.com | 123456   |
+| test             | tester@gmail.com           | 123456   |
+|                  |                            |          |
 
 ### Testing
 
@@ -56,20 +57,8 @@ node seeder -d
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/auth/updatepassword       | Update Password               |
 |                                                                      |                               |
 | Transactions                                                         |                               |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/primary/deposit    | Primary Account Deposit       |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/primary/withdrawal | Primary Account Withdrawal    |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/savings/deposit    | Savings Account Deposit       |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/savings/withdrawal | Savings Account Withdrawal    |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/deposit            | Deposit v3                    |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/transactions/withdrawal         | Withdrawal v3                 |
-|                                                                      |                               |
-| PrimaryTransaction                                                   |                               |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/deposit     | Primary Account Deposit       |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/primaryTransactions/withdraw    | Primary Account Withdrawal    |
-|                                                                      |                               |
-| SavingsTransaction                                                   |                               |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/deposit     | Savings Account Deposit       |
-| POST &nbsp; &nbsp; &nbsp; url/api/v1/savingsTransactions/withdraw    | Savings Account Withdrawal    |
 |                                                                      |                               |
 | Transfers                                                            |                               |
 | POST &nbsp; &nbsp; &nbsp; url/api/v1/transfers                       | Transfer Between Account      |
@@ -89,15 +78,5 @@ node seeder -d
 | PUT &nbsp; &nbsp; &nbsp; &nbsp; url/api/v1/recipients/:id            | Update Recipient              |
 | DELETE &nbsp;url/api/v1/recipients/:id                               | Delete Recipient              |
 |                                                                      |                               |
-| PrimaryAccount                                                       |                               |
-|                                                                      |                               |
-| SavingsAccount                                                       |                               |
-|                                                                      |                               |
 | Appointment                                                          |                               |
-|                                                                      |                               |
-| Advanced Filtering                                                   |                               |
-|                                                                      |                               |
-| Select, Sorting                                                      |                               |
-|                                                                      |                               |
-| Pagination                                                           |                               |
 |                                                                      |                               |
