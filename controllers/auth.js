@@ -243,9 +243,9 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 // @access  Private
 exports.updateDetails = asyncHandler(async (req, res, next) => {
 	const fieldsToUpdate = {
-		userName: req.body.userName,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
+		username: req.body.username,
+		firstname: req.body.firstname,
+		lastname: req.body.lastname,
 		email: req.body.email,
 		phone: req.body.phone,
 	};
@@ -296,7 +296,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 	res.status(statusCode).cookie('token', token, options).json({
 		success: true,
-		token,
-		data: user
+		token
 	});
 };

@@ -266,9 +266,9 @@ exports.getUser = asyncHandler(async (req, res, next) => {
 exports.createUser = asyncHandler(async (req, res, next) => {
   // const user = await User.create(req.body);
   const {
-    userName,
-    firstName,
-    lastName,
+    username,
+    firstname,
+    lastname,
     email,
     phone,
     password
@@ -276,9 +276,9 @@ exports.createUser = asyncHandler(async (req, res, next) => {
 
   // Create user
   const user = await User.create({
-    userName,
-    firstName,
-    lastName,
+    username,
+    firstname,
+    lastname,
     email,
     phone,
     password,
