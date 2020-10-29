@@ -31,19 +31,19 @@ const SavingsAccountSchema = new Schema({
 });
 
 // Prevent user from creating multiple savings account
-SavingsAccountSchema.index({
-  _id: 1,
-  user: 1
-}, {
-  unique: true
-});
+// SavingsAccountSchema.index({
+//   _id: 1,
+//   user: 1
+// }, {
+//   unique: true
+// });
 
 // Reverse populate with virtuals
-SavingsAccountSchema.virtual('savingsTransactionLists', {
-  ref: 'SavingsTransaction',
-  localField: '_id',
-  foreignField: 'account',
-  justOne: false
-});
+// SavingsAccountSchema.virtual('savingsTransactionLists', {
+//   ref: 'SavingsTransaction',
+//   localField: '_id',
+//   foreignField: 'account',
+//   justOne: false
+// });
 
 module.exports = mongoose.model('SavingsAccount', SavingsAccountSchema);

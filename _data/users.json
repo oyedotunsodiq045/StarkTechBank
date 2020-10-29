@@ -1,14 +1,4 @@
 [{
-  "_id": "5f7ef2e48157ff120490a28b",
-  "username": "test",
-  "firstname": "Test",
-  "lastname": "Testing",
-  "email": "tester@gmail.com",
-  "phone": "08123456789",
-  "password": "123456",
-  "primaryAccountId": "5f7ef2e58157ff120490a28c",
-  "savingsAccountId": "5f7ef2e58157ff120490a28d"
-}, {
   "_id": "5f7ef57ec3e0ad14e68f37a4",
   "username": "oyedotunsodiq045",
   "firstname": "Sodiq",

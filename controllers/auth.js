@@ -46,24 +46,19 @@ exports.register = asyncHandler(async (req, res, next) => {
 
 	// find the most recent primary account and select only accountNumber
 	let query1 = await PrimaryAccount.findOne()
-		// .sort('-createdAt')
-		.limit(1)
 		.sort('-createdAt')
 		.select('primaryAccountNumber');
 
 	// find the most recent savings account and select only accountNumber
 	let query2 = await SavingsAccount.findOne()
-		// .sort('-createdAt')
-		.limit(1)
 		.sort('-createdAt')
 		.select('savingsAccountNumber');
 	// console.log(query);
 
 	if (query1 && query2) {
-		// increment accountNumber
+		// increment primaryAccountNumber && savingsAccountNumber
 		primaryAccountNumber = ++query1.primaryAccountNumber;
 		savingsAccountNumber = ++query2.savingsAccountNumber;
-		// accountNumber = query.accountNumber + 1;
 
 		// Generate Primary Account Number
 		const primaryAccount = await PrimaryAccount.create({
@@ -302,7 +297,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 	res.status(statusCode).cookie('token', token, options).json({
 		success: true,
-		user: user,
+		// user: user,
 		token
 	});
 };
