@@ -48,12 +48,13 @@ exports.register = asyncHandler(async (req, res, next) => {
 	let query1 = await PrimaryAccount.findOne()
 		.sort('-createdAt')
 		.select('primaryAccountNumber');
+	// console.log(query1);
 
 	// find the most recent savings account and select only accountNumber
 	let query2 = await SavingsAccount.findOne()
 		.sort('-createdAt')
 		.select('savingsAccountNumber');
-	// console.log(query);
+	// console.log(query2);
 
 	if (query1 && query2) {
 		// increment primaryAccountNumber && savingsAccountNumber

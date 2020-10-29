@@ -1,11 +1,6 @@
 [{
-  "_id": "5f7ef57ec3e0ad14e68f37a6",
-  "savingsAccountNumber": 11223147,
-  "accountBalance": 0,
-  "userRef": "5f7ef57ec3e0ad14e68f37a4"
-}, {
   "_id": "5f7ef584c3e0ad14e68f37a9",
-  "savingsAccountNumber": 11223148,
+  "savingsAccountNumber": 11223145,
   "accountBalance": 0,
   "userRef": "5f7ef584c3e0ad14e68f37a7"
 }]
