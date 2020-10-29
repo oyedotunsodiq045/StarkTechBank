@@ -7,19 +7,26 @@ const jwt = require('jsonwebtoken');
 const UserSchema = new Schema({
   username: {
     type: String,
+    trim: true,
     required: [true, 'Please add a username'],
     unique: [true, 'Username is already taken'],
+    // minlength: [2, 'Username must be at least two characters']
   },
   firstname: {
     type: String,
+    trim: true,
     required: [true, 'Please add a firstname'],
+    // minlength: [2, 'firstname must be at least two characters']
   },
   lastname: {
     type: String,
+    trim: true,
     required: [true, 'Please add a lastname'],
+    // minlength: [2, 'lastname must be at least two characters']
   },
   email: {
     type: String,
+    trim: true,
     required: [true, 'Please add an email'],
     unique: [true, 'Email is already registered'],
     match: [
@@ -29,10 +36,12 @@ const UserSchema = new Schema({
   },
   phone: {
     type: String,
+    trim: true,
     maxlength: [20, 'Phone number can not be longer than 20 characters'],
   },
   role: {
     type: String,
+    trim: true,
     enum: ['user', 'marketer', 'account', 'audit', 'legal'],
     default: 'user',
   },

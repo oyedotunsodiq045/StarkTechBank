@@ -22,6 +22,12 @@ exports.register = asyncHandler(async (req, res, next) => {
 		password
 	} = req.body;
 
+	const userExist = await User.findOne({ username, email })
+
+	if (userExist) {
+		return next(new ErrorResponse(`User already exist`, 404));
+	}
+
 	// Create user
 	const user = await User.create({
 		username,
@@ -296,6 +302,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 	res.status(statusCode).cookie('token', token, options).json({
 		success: true,
+		user: user,
 		token
 	});
 };

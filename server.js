@@ -89,7 +89,7 @@ app.use('/api/v1/recipients', recipients);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3003;
 
 const server = app.listen(
 	PORT,
