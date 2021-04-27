@@ -46,7 +46,7 @@
 		"node-geocoder": "^3.27.0",
 		"nodemailer": "^6.4.13",
 		"popper.js": "^1.16.1",
-		"redis": "^3.0.2",
+		"redis": "^3.1.1",
 		"slugify": "^1.4.5"
 	},
 	"devDependencies": {
